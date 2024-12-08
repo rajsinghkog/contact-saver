@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Saver by Raj</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <style>
+        /* Animation for fading in the contact list */
+        .contact-segment {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Fade-in effect */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Slide-up effect for the contact segments */
+        .contact-segment-slide {
+            animation: slideUp 1s ease-in-out;
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Button hover effect */
+        .ui.button:hover {
+            transition: transform 0.2s ease-in-out;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-top: 50px;" class="ui container">
+        <h1 class="ui center aligned header">Contact List Saver</h1>
+        
+        <!-- Form to Add New Contact -->
+        <form class="ui form" action="/add" method="post">
+            <div class="field">
+                <label>Name</label>
+                <input type="text" name="title" placeholder="Enter the Name..." required>
+            </div>
+            <div class="field">
+                <label>Phone</label>
+                <input type="tel" name="number" placeholder="Enter the Phone Number..." required>
+            </div>
+            <button class="ui blue button" type="submit">Add</button>
+        </form>
+
+        <hr>
+        <!-- Loop through the contact list and animate the display of each -->
+        {% for contact in contactlist %}
+            <div class="ui segment contact-segment contact-segment-slide">
+                <p class="ui big header">{{ contact.name }} | {{ contact.phone }}</p>
+                <a class="ui blue button" href="/update/{{contact.id }}">Update</a>
+                <a class="ui red button" href="/delete/{{ contact.id }}">Delete</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        // Optional: Add fade-in effect for the whole page content after load
+        window.onload = function () {
+            document.body.style.animation = "fadeIn 1s ease-in-out";
+        };
+    </script>
+</body>
+</html>
