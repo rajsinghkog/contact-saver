@@ -5,7 +5,7 @@ from owndatabase import Base
 
 
 class ContactList(Base):
-    __tablename__ = "contactlist5"
+    __tablename__ = "contactlist"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False,)  # Non-nullable name
